@@ -1,0 +1,13 @@
+# Not to be tracked
+.local/
+TODO.md
+
+# vscode
+*.code-workspace
+.vscode/
+
+# node
+node_modules/
+
+# environment
+.env

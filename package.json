@@ -1,0 +1,30 @@
+{
+  "name": "whisper",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "version": "0.1.0",
+  "description": "A secret text messaging app.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ergomancer/whisper.git"
+  },
+  "keywords": [
+    "whisper",
+    "ergomancer",
+    "secret",
+    "message",
+    "messaging",
+    "text"
+  ],
+  "author": "ergomancer",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ergomancer/whisper/issues"
+  },
+  "homepage": "https://github.com/ergomancer/whisper#readme"
+}
