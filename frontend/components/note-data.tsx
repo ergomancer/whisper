@@ -21,7 +21,9 @@ export default function NoteData({
           You can see that note with the following link and password.
         </CardDescription>
         <p>Link</p>
-        <p>{createdNote.noteId}</p>
+        <a href={`${process.env.FRONTEND_URL}/${createdNote.noteId}`}>
+          `${process.env.FRONTEND_URL}/${createdNote.noteId}`
+        </a>
         <p>Password</p>
         <p>{createdNote.password}</p>
       </CardContent>
