@@ -1,3 +1,4 @@
+import Link from "next/link"
 import {
   Card,
   CardHeader,
@@ -21,9 +22,9 @@ export default function NoteData({
           You can see that note with the following link and password.
         </CardDescription>
         <p>Link</p>
-        <a href={`${process.env.FRONTEND_URL}/${createdNote.noteId}`}>
-          `${process.env.FRONTEND_URL}/${createdNote.noteId}`
-        </a>
+        <Link href={`/${createdNote.noteId}`}>
+          {`${process.env.NEXT_PUBLIC_FRONTEND_URL}/${createdNote.noteId}`}
+        </Link>
         <p>Password</p>
         <p>{createdNote.password}</p>
       </CardContent>

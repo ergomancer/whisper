@@ -9,9 +9,12 @@ export type CreateNoteCardState = {
   success: boolean;
 };
 
-export type UnlockFormState = {
+export type NoteCardState = {
   errors?: {
     password?: string[];
   };
-  message?: string | null;
+  data?: {
+    note: string;
+  };
+  success?: boolean;
 };

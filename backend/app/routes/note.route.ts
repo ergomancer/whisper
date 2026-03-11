@@ -7,13 +7,9 @@ import { SchemaNoteCreate, SchemaPassword } from "@whisper/shared/schema";
 const noteRouter = Router();
 
 //route to create a new note
-noteRouter.post(
-  "/",
-  validate(SchemaNoteCreate),
-  createNote,
-);
+noteRouter.post("/", validate(SchemaNoteCreate), createNote);
 
 //route to access a note
-noteRouter.get("/:noteId", validate(SchemaPassword), getNote);
+noteRouter.post("/:noteId", validate(SchemaPassword), getNote);
 
 export default noteRouter;
