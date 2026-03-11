@@ -19,17 +19,17 @@ export const DatabaseError = new ExtendedError(
 export const NotFound = new ExtendedError(
   404,
   "NotFound",
-  "The request resource does not exist!",
+  "The requested note does not exist!",
 );
 
 export const InvalidData = new ExtendedError(
   400,
   "InvalidData",
-  "Cannot create user with invalid data!",
+  "Cannot create note with invalid data!",
 );
 
-export const NotAuthenticated = new ExtendedError(
+export const NotUnlocked = new ExtendedError(
   401,
-  "NotAuthenticated",
-  "You need to log-in with valid credentials to proceed!",
+  "NotUnlocked",
+  "The provided password failed to unlock the note!",
 );

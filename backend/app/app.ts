@@ -1,7 +1,7 @@
 import express from "express";
 import errorHandler from "./middlewares/error-handler";
-import { NotFound } from "./lib/definitions/errors";
-import notesRouter from "./routes/notes.route";
+import { NotFound } from "@whisper/shared/errors";
+import noteRouter from "./routes/note.route";
 
 const app = express();
 app.use(express.static("public"));
@@ -12,7 +12,7 @@ app.get("/", (req, res) =>
 );
 
 //connect routers
-app.use("/notes", notesRouter);
+app.use("/note", noteRouter);
 
 //set a catch-all and error handler
 app.all("/{*splat}", () => {
