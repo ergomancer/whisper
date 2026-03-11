@@ -4,7 +4,10 @@ import { NotFound } from "@whisper/shared/errors";
 import noteRouter from "./routes/note.route";
 
 const app = express();
+
 app.use(express.static("public"));
+
+app.use(express.json());
 
 //redirect requests to "/" to the frontend or my github profile
 app.get("/", (req, res) =>

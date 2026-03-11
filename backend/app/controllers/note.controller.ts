@@ -7,6 +7,6 @@ export async function createNote(req: Request, res: Response) {
 }
 
 export async function getNote(req: Request, res: Response) {
-  const note = await fetchNote(req.params.noteId as string, req.body);
+  const note = await fetchNote(req.params.noteId as string, req.body.password);
   res.status(200).json({ note });
 }
