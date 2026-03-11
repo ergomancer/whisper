@@ -11,6 +11,7 @@ import {
 import { NoteCardState } from "@whisper/shared/types"
 import { getNote } from "@/lib/actions"
 import GetNoteForm from "./get-note-form"
+import Note from "./note"
 
 export default function NoteCard({ noteId }: { noteId: string }) {
   const initialState: NoteCardState = { success: false }
@@ -20,17 +21,21 @@ export default function NoteCard({ noteId }: { noteId: string }) {
     initialState
   )
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{cardState.success ? "Your Note" : "Unlock Note"}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {cardState.success ? (
-          <p>{cardState.data?.note}</p>
-        ) : (
-          <GetNoteForm action={getNoteAction} />
-        )}
-      </CardContent>
-    </Card>
+    <div className="flex h-full w-full items-center justify-center">
+      <Card>
+        <CardHeader className="mb-5">
+          <CardTitle className="text-2xl">
+            {cardState.success ? "Your Note" : "Unlock Note"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {cardState.success ? (
+            <Note note={cardState.data!.note} />
+          ) : (
+            <GetNoteForm action={getNoteAction} />
+          )}
+        </CardContent>
+      </Card>
+    </div>
   )
 }
