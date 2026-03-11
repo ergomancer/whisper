@@ -8,5 +8,5 @@ export const SchemaNoteCreate = z.object({
 });
 
 export const SchemaPassword = z.object({
-  Password: Password,
+  password: Password,
 });
