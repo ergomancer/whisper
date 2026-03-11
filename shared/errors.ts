@@ -1,4 +1,4 @@
-class ExtendedError extends Error {
+export class ExtendedError extends Error {
   statusCode: number;
 
   constructor(status: number, name: string, message: string) {
@@ -7,8 +7,6 @@ class ExtendedError extends Error {
     this.name = name;
   }
 }
-
-export type { ExtendedError };
 
 export const DatabaseError = new ExtendedError(
   500,
