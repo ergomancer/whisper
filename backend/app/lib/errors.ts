@@ -20,11 +20,9 @@ export const NotFound = new ExtendedError(
   "The requested note does not exist!",
 );
 
-export const InvalidData = new ExtendedError(
-  400,
-  "InvalidData",
-  "Cannot create note with invalid data!",
-);
+export function InvalidData(message: string) {
+  return new ExtendedError(400, "InvalidData", message);
+}
 
 export const NotUnlocked = new ExtendedError(
   401,

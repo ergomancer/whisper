@@ -6,7 +6,8 @@ export default function validate(Schema: ZodObject) {
   return (req: Request, res: Response, next: NextFunction) => {
     const formData = req.body;
     const validatedFields = Schema.safeParse(formData);
-    if (!validatedFields.success) throw InvalidData;
+    if (!validatedFields.success)
+      throw InvalidData(validatedFields.error.issues[0]!.message);
     else req.body = validatedFields.data;
     next();
   };
