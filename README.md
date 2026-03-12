@@ -22,18 +22,26 @@ A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and 
    2. in `/frontend`
       1. `BACKEND_URL` - url for the backend where this is deployed (for local it will be `"https://localhost:<PORT>"` : replace `<PORT>` with the value of the `PORT` in `.env` in `/frontend`)
       2. `NEXT_PUBLIC_FRONTEND_URL` - url for the frontend. Same as `APP_URL` in `.env` in `/frontend`
-6. Set-up your database
+6. Run prisma migrate and generate prisma client
 
    ```bash
-   cd /backend
-   npx prisma migrate dev
+   cd backend
+   npx prisma migrate deploy
+   npx prisma generate
    ```
 
-7. Run backend dev server
-   `npm run dev`
-8. Run frontend dev server
-   `npm run dev`
-9. Visit the frontend on any browser
+7. Build backend and frontend
+
+   ```bash
+   # in /backend/
+   npm run build # build backend
+   npm run start # start backend server
+   cd ../frontend
+   npm run build # build frontend
+   npm run start # start frontend server
+   ```
+
+8. Visit the frontend on any browser
 
 ## Potential Future Improvements
 
