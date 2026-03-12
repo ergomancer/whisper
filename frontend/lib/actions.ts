@@ -1,8 +1,8 @@
 "use server"
 
-import type { CreateNoteCardState, NoteCardState } from "@whisper/shared/types"
-import { SchemaNoteCreate, SchemaPassword } from "@whisper/shared/schema"
-import { ExtendedError } from "@whisper/shared/errors"
+import type { CreateNoteCardState, NoteCardState } from "./types"
+import { SchemaNoteCreate, SchemaPassword } from "./schema"
+import { ExtendedError } from "./errors"
 
 export async function createNote(
   prevState: CreateNoteCardState,

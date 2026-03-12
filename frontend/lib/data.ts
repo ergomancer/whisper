@@ -1,4 +1,4 @@
-import { ExtendedError } from "@whisper/shared/errors"
+import { ExtendedError } from "../lib/errors"
 
 export async function summarize(noteId: string) {
   let summary
