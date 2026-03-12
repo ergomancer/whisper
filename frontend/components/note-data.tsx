@@ -5,7 +5,10 @@ import {
   CardTitle,
   CardContent,
   CardDescription,
+  CardFooter,
+  CardAction,
 } from "./ui/card"
+import CopyClipboard from "./copy-clipboard"
 
 export default function NoteData({
   createdNote,
@@ -31,6 +34,11 @@ export default function NoteData({
         <p className="mt-5 text-lg">Password</p>
         <p className="text-md mt-3">{createdNote.password}</p>
       </CardContent>
+      <CardFooter>
+        <CardAction>
+          <CopyClipboard createdNote={createdNote} />
+        </CardAction>
+      </CardFooter>
     </Card>
   )
 }
