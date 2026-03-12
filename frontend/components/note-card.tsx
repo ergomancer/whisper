@@ -30,7 +30,7 @@ export default function NoteCard({ noteId }: { noteId: string }) {
         </CardHeader>
         <CardContent>
           {cardState.success ? (
-            <Note note={cardState.data!.note} />
+            <Note note={cardState.data!.note} noteId={noteId} />
           ) : (
             <GetNoteForm action={getNoteAction} />
           )}

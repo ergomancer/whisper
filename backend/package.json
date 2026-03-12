@@ -17,9 +17,10 @@
     "tsx": "^4.21.0"
   },
   "dependencies": {
-    "@whisper/shared": "*",
+    "@google/genai": "^1.44.0",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
+    "@whisper/shared": "*",
     "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "pg": "^8.20.0"

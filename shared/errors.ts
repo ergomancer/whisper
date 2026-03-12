@@ -31,3 +31,9 @@ export const NotUnlocked = new ExtendedError(
   "NotUnlocked",
   "The provided password failed to unlock the note!",
 );
+
+export const AIError = new ExtendedError(
+  500,
+  "InternalServerError",
+  "Could not process request!",
+);
