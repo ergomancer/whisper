@@ -1,17 +1,12 @@
 "use client"
 
-import { useActionState } from "react"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "./ui/card"
+import { Suspense, useActionState } from "react"
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 import { NoteCardState } from "@whisper/shared/types"
 import { getNote } from "@/lib/actions"
 import GetNoteForm from "./get-note-form"
 import Note from "./note"
+import NoteLoading from "./note-loading"
 
 export default function NoteCard({ noteId }: { noteId: string }) {
   const initialState: NoteCardState = { success: false }
@@ -30,7 +25,9 @@ export default function NoteCard({ noteId }: { noteId: string }) {
         </CardHeader>
         <CardContent>
           {cardState.success ? (
-            <Note note={cardState.data!.note} noteId={noteId} />
+            <Suspense fallback={<NoteLoading />}>
+              <Note note={cardState.data!.note} noteId={noteId} />
+            </Suspense>
           ) : (
             <GetNoteForm action={getNoteAction} />
           )}

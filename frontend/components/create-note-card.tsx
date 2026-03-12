@@ -7,11 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useActionState } from "react"
+import { Suspense, useActionState } from "react"
 import CreateNoteForm from "@/components/create-note-form"
 import { createNote } from "@/lib/actions"
 import NoteData from "./note-data"
 import type { CreateNoteCardState } from "@whisper/shared/types"
+import NoteDataLoading from "./note-data-loading"
 
 export default function CreateNoteCard() {
   const initialState: CreateNoteCardState = { success: false }
@@ -34,7 +35,9 @@ export default function CreateNoteCard() {
         <div className="m-auto p-5">
           <CardDescription>
             {cardState.success ? (
-              <NoteData createdNote={cardState.data!} />
+              <Suspense fallback={<NoteDataLoading />}>
+                <NoteData createdNote={cardState.data!} />
+              </Suspense>
             ) : (
               <ol className="flex flex-col gap-5 text-lg text-red-500">
                 <li key="1">Create a note</li>
