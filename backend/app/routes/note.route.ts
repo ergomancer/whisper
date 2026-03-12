@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createNote, getNote } from "../controllers/note.controller";
 import validate from "../middlewares/validator";
-import { SchemaNoteCreate, SchemaPassword } from "@whisper/shared/schema";
+import { SchemaNoteCreate, SchemaPassword } from "../lib/schema";
 import { getSummary } from "../controllers/ai.controller";
 
 //instantiate the note router

@@ -1,4 +1,4 @@
-import { DatabaseError, NotFound } from "@whisper/shared/errors";
+import { DatabaseError, NotFound } from "../lib/errors";
 import type { Prisma } from "../prisma/generated/client";
 import { prisma } from "../prisma/prisma";
 

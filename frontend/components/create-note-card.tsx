@@ -11,7 +11,7 @@ import { useActionState } from "react"
 import CreateNoteForm from "@/components/create-note-form"
 import { createNote } from "@/lib/actions"
 import NoteData from "./note-data"
-import type { CreateNoteCardState } from "@whisper/shared/types"
+import type { CreateNoteCardState } from "../lib/types"
 
 export default function CreateNoteCard() {
   const initialState: CreateNoteCardState = { success: false }

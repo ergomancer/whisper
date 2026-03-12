@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { getNote } from "../repositories/note.repository";
-import { AIError } from "shared/errors";
+import { AIError } from "backend/app/lib/errors";
 
 const ai = new GoogleGenAI({});
 

@@ -1,14 +1,8 @@
 "use client"
 
 import { useActionState } from "react"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "./ui/card"
-import { NoteCardState } from "@whisper/shared/types"
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
+import { NoteCardState } from "../lib/types"
 import { getNote } from "@/lib/actions"
 import GetNoteForm from "./get-note-form"
 import Note from "./note"

@@ -1,4 +1,4 @@
-import { NotUnlocked } from "shared/errors";
+import { NotUnlocked } from "backend/app/lib/errors";
 import type { Prisma } from "../prisma/generated/client";
 import { createNote, getNote } from "../repositories/note.repository";
 

@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import type { ExtendedError } from "../lib/definitions/errors";
+import type { ExtendedError } from "../lib/errors";
 
 export default async function errorHandler(
   err: ExtendedError,

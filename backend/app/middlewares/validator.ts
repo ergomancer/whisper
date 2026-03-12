@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { InvalidData } from "@whisper/shared/errors";
+import { InvalidData } from "../lib/errors";
 import type { ZodObject } from "zod";
 
 export default function validate(Schema: ZodObject) {

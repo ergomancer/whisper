@@ -2,7 +2,6 @@
   "compilerOptions": {
     "paths": {
       "*": ["./*"],
-      "@shared/*": ["./shared/*"],
       "@frontend/*": ["./frontend/*"],
       "@backend/*": ["./backend/*"]
     }

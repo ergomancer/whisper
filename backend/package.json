@@ -8,7 +8,7 @@
     "dev": "npx tsx --env-file=.env --watch  app/app.ts",
     "build": "npx tsc",
     "start": "node build/app.js",
-    "migrate": "npx prisma migrate dev && npx prisma generate"
+    "migrate": "npx prisma migrate deploy && npx prisma generate"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
@@ -20,7 +20,6 @@
     "@google/genai": "^1.44.0",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
-    "@whisper/shared": "*",
     "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "pg": "^8.20.0"

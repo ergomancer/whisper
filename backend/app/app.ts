@@ -1,6 +1,6 @@
 import express from "express";
 import errorHandler from "./middlewares/error-handler";
-import { NotFound } from "@whisper/shared/errors";
+import { NotFound } from "./lib/errors";
 import noteRouter from "./routes/note.route";
 
 const app = express();
