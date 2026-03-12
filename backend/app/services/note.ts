@@ -1,6 +1,6 @@
-import { NotUnlocked } from "backend/app/lib/errors";
-import type { Prisma } from "../prisma/generated/client";
-import { createNote, getNote } from "../repositories/note.repository";
+import { NotUnlocked } from "../lib/errors.js";
+import type { Prisma } from "../prisma/generated/client.js";
+import { createNote, getNote } from "../repositories/note.repository.js";
 
 export async function addNote(data: Prisma.NoteCreateInput) {
   const note = await createNote(data);

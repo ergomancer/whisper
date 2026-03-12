@@ -1,5 +1,5 @@
-import type { Request, Response } from "node_modules/@types/express";
-import { summarize } from "../services/ai";
+import type { Request, Response } from "express";
+import { summarize } from "../services/ai.js";
 
 export async function getSummary(req: Request, res: Response) {
   const noteId = req.params.noteId as string;

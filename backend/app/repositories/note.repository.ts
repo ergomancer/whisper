@@ -1,10 +1,10 @@
-import { DatabaseError, NotFound } from "../lib/errors";
-import type { Prisma } from "../prisma/generated/client";
-import { prisma } from "../prisma/prisma";
+import { DatabaseError, NotFound } from "../lib/errors.js";
+import type { Prisma } from "../prisma/generated/client.js";
+import { prisma } from "../prisma/prisma.js";
 
 // query to create a new note
 export async function createNote(data: Prisma.NoteCreateInput) {
-  const note = await prisma.note.create({ data }).catch((err) => {
+  const note = await prisma.note.create({ data }).catch((err: Error) => {
     console.log(err);
     throw DatabaseError;
   });
@@ -15,7 +15,7 @@ export async function createNote(data: Prisma.NoteCreateInput) {
 export async function getNote(noteId: string) {
   const note = await prisma.note
     .findUnique({ where: { noteId } })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.log(err);
       throw DatabaseError;
     });

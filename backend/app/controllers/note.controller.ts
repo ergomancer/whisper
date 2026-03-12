@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { addNote, fetchNote } from "../services/note";
+import { addNote, fetchNote } from "../services/note.js";
 
 export async function createNote(req: Request, res: Response) {
   const noteAccessData = await addNote(req.body);

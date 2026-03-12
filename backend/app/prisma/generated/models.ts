@@ -8,5 +8,5 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Note'
-export type * from './commonInputTypes'
+export type * from './models/Note.js'
+export type * from './commonInputTypes.js'

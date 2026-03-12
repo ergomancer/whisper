@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createNote, getNote } from "../controllers/note.controller";
-import validate from "../middlewares/validator";
-import { SchemaNoteCreate, SchemaPassword } from "../lib/schema";
-import { getSummary } from "../controllers/ai.controller";
+import { createNote, getNote } from "../controllers/note.controller.js";
+import validate from "../middlewares/validator.js";
+import { SchemaNoteCreate, SchemaPassword } from "../lib/schema.js";
+import { getSummary } from "../controllers/ai.controller.js";
 
 //instantiate the note router
 const noteRouter = Router();

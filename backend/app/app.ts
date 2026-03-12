@@ -1,7 +1,7 @@
 import express from "express";
-import errorHandler from "./middlewares/error-handler";
-import { NotFound } from "./lib/errors";
-import noteRouter from "./routes/note.route";
+import errorHandler from "./middlewares/error-handler.js";
+import { NotFound } from "./lib/errors.js";
+import noteRouter from "./routes/note.route.js";
 
 const app = express();
 
