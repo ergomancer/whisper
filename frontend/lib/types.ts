@@ -1,20 +1,20 @@
 export type CreateNoteCardState = {
   errors?: {
-    note?: string[];
-  };
+    note?: string[]
+  }
   data?: {
-    noteId: string;
-    password: string;
-  };
-  success: boolean;
-};
+    noteId: string
+    password: string
+  }
+  success: boolean
+}
 
 export type NoteCardState = {
   errors?: {
-    password?: string[];
-  };
+    password?: string[]
+  }
   data?: {
-    note: string;
-  };
-  success?: boolean;
-};
+    note: string
+  }
+  success?: boolean
+}

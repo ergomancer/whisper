@@ -28,7 +28,7 @@ export default function CreateNoteCard() {
             <CardTitle className="text-2xl">Create Note</CardTitle>
           </CardHeader>
           <CardContent>
-            <CreateNoteForm action={createNoteAction} />
+            <CreateNoteForm state={cardState} action={createNoteAction} />
           </CardContent>
         </div>
         <div className="m-auto p-5">

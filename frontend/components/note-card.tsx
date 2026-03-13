@@ -3,13 +3,13 @@
 import { useActionState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 import { NoteCardState } from "../lib/types"
-import { getNote } from "@/lib/actions"
-import GetNoteForm from "./get-note-form"
+import { unlockNote } from "@/lib/actions"
+import UnlockNoteForm from "./unlock-note-form"
 import Note from "./note"
 
 export default function NoteCard({ noteId }: { noteId: string }) {
   const initialState: NoteCardState = { success: false }
-  const getNoteById = getNote.bind(null, noteId)
+  const getNoteById = unlockNote.bind(null, noteId)
   const [cardState, getNoteAction] = useActionState<NoteCardState, FormData>(
     getNoteById,
     initialState
@@ -26,7 +26,7 @@ export default function NoteCard({ noteId }: { noteId: string }) {
           {cardState.success ? (
             <Note note={cardState.data!.note} noteId={noteId} />
           ) : (
-            <GetNoteForm action={getNoteAction} />
+            <UnlockNoteForm state={cardState} action={getNoteAction} />
           )}
         </CardContent>
       </Card>

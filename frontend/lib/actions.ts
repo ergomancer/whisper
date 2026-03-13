@@ -3,6 +3,7 @@
 import type { CreateNoteCardState, NoteCardState } from "./types"
 import { SchemaNoteCreate, SchemaPassword } from "./schema"
 import { ExtendedError } from "./errors"
+import { z } from "zod"
 
 export async function createNote(
   prevState: CreateNoteCardState,
@@ -13,11 +14,15 @@ export async function createNote(
     note: formData.get("note"),
   })
 
-  if (!validatedFields.success)
-    returnValue.errors = validatedFields.error.flatten().fieldErrors
+  if (!validatedFields.success) {
+    returnValue.errors = {
+      note: z.treeifyError(validatedFields.error).properties?.note?.errors,
+    }
+    return returnValue
+  }
 
+  const body = JSON.stringify(validatedFields.data)
   try {
-    const body = JSON.stringify(validatedFields.data)
     const res = await fetch(`${process.env.BACKEND_URL!}/note/`, {
       method: "POST",
       headers: {
@@ -29,15 +34,15 @@ export async function createNote(
     if (res.ok) {
       returnValue.data = resData
       returnValue.success = true
+      return returnValue
     } else throw new ExtendedError(res.status, resData.name, resData.message)
   } catch (err) {
     console.log(err)
     throw err
   }
-  return returnValue
 }
 
-export async function getNote(
+export async function unlockNote(
   noteId: string,
   prevState: NoteCardState,
   formData: FormData
@@ -47,11 +52,16 @@ export async function getNote(
     password: formData.get("password"),
   })
 
-  if (!validatedFields.success)
-    returnValue.errors = validatedFields.error.flatten().fieldErrors
+  if (!validatedFields.success) {
+    returnValue.errors = {
+      password: z.treeifyError(validatedFields.error).properties?.password
+        ?.errors,
+    }
+    return returnValue
+  }
 
+  const body = JSON.stringify(validatedFields.data)
   try {
-    const body = JSON.stringify(validatedFields.data)
     const res = await fetch(`${process.env.BACKEND_URL!}/note/${noteId}`, {
       method: "POST",
       headers: {
@@ -63,10 +73,10 @@ export async function getNote(
     if (res.ok) {
       returnValue.data = resData
       returnValue.success = true
+      return returnValue
     } else throw new ExtendedError(res.status, resData.name, resData.message)
   } catch (err) {
     console.log(err)
     throw err
   }
-  return returnValue
 }
