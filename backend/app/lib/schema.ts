@@ -21,3 +21,10 @@ export const SchemaPassword = z.object(
   },
   "Password field is required",
 );
+
+export const SchemaSummarize = z.object(
+  {
+    note: Note,
+  },
+  "Note is required to summarize",
+);

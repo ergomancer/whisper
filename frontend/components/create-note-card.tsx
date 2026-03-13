@@ -7,55 +7,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useActionState } from "react"
 import CreateNoteForm from "@/components/create-note-form"
-import { createNote } from "@/lib/actions"
-import NoteData from "./note-data"
-import type { CreateNoteCardState } from "../lib/types"
-import NoteDataLoading from "./note-data-loading"
+import { CreateNoteActionState } from "@/lib/types"
 
-export default function CreateNoteCard() {
-  const initialState: CreateNoteCardState = { success: false }
-  const [cardState, createNoteAction, isPending] = useActionState<
-    CreateNoteCardState,
-    FormData
-  >(createNote, initialState)
-
+export default function CreateNoteCard({
+  formManager,
+}: {
+  formManager: [CreateNoteActionState, (payload: FormData) => void, boolean]
+}) {
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <Card className="flex flex-col gap-0 border p-0 lg:flex-row">
-        <div className="border-r p-5">
-          <CardHeader className="mb-5">
-            <CardTitle className="text-2xl">Create Note</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CreateNoteForm
-              state={cardState}
-              action={createNoteAction}
-              pending={isPending}
-            />
-          </CardContent>
-        </div>
-        <div className="m-auto p-5">
-          <CardDescription>
-            {cardState.success ? (
-              isPending ? (
-                <NoteDataLoading />
-              ) : isPending ? (
-                <NoteDataLoading />
-              ) : (
-                <NoteData createdNote={cardState.data!} />
-              )
-            ) : (
-              <ol className="flex flex-col gap-5 text-lg text-red-500">
-                <li key="1">Create a note</li>
-                <li key="2">Get the link and password</li>
-                <li key="3">Share it</li>
-              </ol>
-            )}
-          </CardDescription>
-        </div>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl">Create Note</CardTitle>
+        <CardDescription className="text-lg">
+          Write your note in 500 characters or less
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <CreateNoteForm formManager={formManager} />
+      </CardContent>
+    </Card>
   )
 }

@@ -20,8 +20,8 @@ export default function Error({
   reset: () => void
 }) {
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <Card>
+    <div className="items flex items-center justify-center">
+      <Card className="h-100 w-100">
         <CardHeader className="mb-5">
           <CardTitle className="text-2xl">{`${error.status ? error.status + " : " : ""}${error.name}`}</CardTitle>
         </CardHeader>

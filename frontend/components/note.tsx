@@ -1,18 +1,32 @@
-import SummarizeButton from "./summarize-button"
+"use client"
 
-export default function Note({
-  note,
-  noteId,
-}: {
-  note: string
-  noteId: string
-}) {
+import { Button } from "./ui/button"
+import { useActionState } from "react"
+import { summarize } from "@/lib/actions"
+import Summary from "./summary"
+import LoadingSkeleton from "./loading-skeleton"
+
+export default function Note({ note }: { note: string }) {
+  const initialState = { success: false, summary: "" }
+  const summarizeNote = summarize.bind(null, note)
+  const [summaryState, summarizeAction, isPending] = useActionState(
+    summarizeNote,
+    initialState
+  )
   return (
-    <div>
-      <p className="h-100 w-60 text-xl md:w-90 lg:w-120 xl:w-150 2xl:w-200">
-        {note}
-      </p>
-      <SummarizeButton noteId={noteId}/>
+    <div className="w-[80vw]">
+      <p className="text-md min-h-50 w-[80%]">{note}</p>
+      {!isPending ? (
+        !summaryState.summary ? (
+          <form action={summarizeAction}>
+            <Button>Summarize this note</Button>
+          </form>
+        ) : (
+          <Summary summary={summaryState.summary} />
+        )
+      ) : (
+        <LoadingSkeleton message="Generating summary..." />
+      )}
     </div>
   )
 }

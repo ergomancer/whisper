@@ -1,15 +1,17 @@
-"use client"
-import { copyToClipboard } from "@/lib/utils"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "./ui/button"
+import { CheckmarkSquare01Icon, Copy01Icon } from "@hugeicons/core-free-icons"
+import { copyToClipboard } from "@/lib/utils"
 import { useState } from "react"
 import { Spinner } from "./ui/spinner"
 
-export default function CopyClipboard({ text }: { text: string }) {
+export default function CopyIcon({ text }: { text: string }) {
   const initialState = "ready"
   const [state, setState] = useState(initialState)
   return (
     <Button
-      variant={"secondary"}
+      variant={"ghost"}
+      size="icon"
       onClick={async () => {
         setState("copying")
         await copyToClipboard(text)
@@ -17,13 +19,11 @@ export default function CopyClipboard({ text }: { text: string }) {
       }}
     >
       {state == "copied" ? (
-        "Copied"
+        <HugeiconsIcon icon={CheckmarkSquare01Icon} />
       ) : state == "copying" ? (
-        <span>
-          Copying <Spinner />
-        </span>
+        <Spinner />
       ) : (
-        "Copy to Clipboard"
+        <HugeiconsIcon icon={Copy01Icon} />
       )}
     </Button>
   )

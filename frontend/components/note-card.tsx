@@ -2,43 +2,38 @@
 
 import { useActionState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
-import { NoteCardState } from "../lib/types"
+import type { UnlockNoteActionState } from "../lib/types"
 import { unlockNote } from "@/lib/actions"
 import UnlockNoteForm from "./unlock-note-form"
 import Note from "./note"
-import NoteLoading from "./note-loading"
+import LoadingSkeleton from "./loading-skeleton"
 
 export default function NoteCard({ noteId }: { noteId: string }) {
-  const initialState: NoteCardState = { success: false }
-  const getNoteById = unlockNote.bind(null, noteId)
-  const [cardState, getNoteAction, isPending] = useActionState<
-    NoteCardState,
-    FormData
-  >(getNoteById, initialState)
-  return (
-    <div className="flex h-full w-full items-center justify-center">
-      <Card>
-        <CardHeader className="mb-5">
-          <CardTitle className="text-2xl">
-            {cardState.success ? "Your Note" : "Unlock Note"}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {cardState.success ? (
-            isPending ? (
-              <NoteLoading />
-            ) : (
-              <Note note={cardState.data!.note} noteId={noteId} />
-            )
-          ) : (
-            <UnlockNoteForm
-              state={cardState}
-              action={getNoteAction}
-              pending={isPending}
-            />
-          )}
-        </CardContent>
-      </Card>
-    </div>
+  const initialState: UnlockNoteActionState = {
+    success: false,
+  }
+  const unlockNoteById = unlockNote.bind(null, noteId)
+  const formManager = useActionState<UnlockNoteActionState, FormData>(
+    unlockNoteById,
+    initialState
+  )
+  const [formState, unlockNoteAction, isPending] = formManager
+  return isPending ? (
+    <LoadingSkeleton message="Unlocking your note..." />
+  ) : (
+    <Card>
+      <CardHeader className="mb-5">
+        <CardTitle className="text-2xl">
+          {formState.success ? "Your Note" : "Unlock Note"}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {formState.success ? (
+          <Note note={formState.data!.note} />
+        ) : (
+          <UnlockNoteForm formManager={formManager} />
+        )}
+      </CardContent>
+    </Card>
   )
 }

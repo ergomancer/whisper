@@ -2,6 +2,9 @@ import express from "express";
 import errorHandler from "./middlewares/error-handler.js";
 import { NotFound } from "./lib/errors.js";
 import noteRouter from "./routes/note.route.js";
+import { getSummary } from "./controllers/ai.controller.js";
+import validate from "./middlewares/validator.js";
+import { SchemaSummarize } from "./lib/schema.js";
 
 const app = express();
 
@@ -13,6 +16,9 @@ app.use(express.json());
 app.get("/", (req, res) =>
   res.redirect(process.env.APP_URL || "https://github.com/ergomancer/"),
 );
+
+//create routes
+app.post("/summarize", validate(SchemaSummarize), getSummary);
 
 //connect routers
 app.use("/note", noteRouter);

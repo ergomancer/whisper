@@ -1,19 +1,16 @@
-import { CreateNoteCardState } from "@/lib/types"
+import { CreateNoteActionState } from "@/lib/types"
 import { Button } from "./ui/button"
 import { Textarea } from "./ui/textarea"
 
 export default function CreateNoteForm({
-  state,
-  action,
-  pending,
+  formManager,
 }: {
-  state: CreateNoteCardState
-  action: (payload: FormData) => void
-  pending: boolean
+  formManager: [CreateNoteActionState, (payload: FormData) => void, boolean]
 }) {
+  const [formState, createNoteAction, isPending] = formManager
   return (
     <form
-      action={action}
+      action={createNoteAction}
       className="flex flex-col gap-5 space-y-3"
       aria-describedby="note-error"
     >
@@ -21,7 +18,7 @@ export default function CreateNoteForm({
         id="note"
         name="note"
         placeholder="Write your note within 500 characters"
-        className="h-100 w-60 md:w-90 lg:w-120 xl:w-150 2xl:w-200"
+        className="h-100 w-[80%]"
         aria-describedby="note-error"
       />
       <div
@@ -30,8 +27,8 @@ export default function CreateNoteForm({
         aria-atomic="true"
         className="place-self-end"
       >
-        {state.errors &&
-          state.errors.note!.map((err: string) => {
+        {formState.errors &&
+          formState.errors.note!.map((err: string) => {
             return (
               <p className="mt-2 text-sm text-red-500" key={err}>
                 {err}
@@ -39,7 +36,7 @@ export default function CreateNoteForm({
             )
           })}
       </div>
-      <Button type="submit" disabled={pending} className="place-self-end">
+      <Button type="submit" disabled={isPending} className="place-self-end">
         Create
       </Button>
     </form>
