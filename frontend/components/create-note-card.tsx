@@ -16,7 +16,7 @@ import NoteDataLoading from "./note-data-loading"
 
 export default function CreateNoteCard() {
   const initialState: CreateNoteCardState = { success: false }
-  const [cardState, createNoteAction] = useActionState<
+  const [cardState, createNoteAction, isPending] = useActionState<
     CreateNoteCardState,
     FormData
   >(createNote, initialState)
@@ -29,7 +29,11 @@ export default function CreateNoteCard() {
             <CardTitle className="text-2xl">Create Note</CardTitle>
           </CardHeader>
           <CardContent>
-            <CreateNoteForm state={cardState} action={createNoteAction} />
+            <CreateNoteForm
+              state={cardState}
+              action={createNoteAction}
+              pending={isPending}
+            />
           </CardContent>
         </div>
         <div className="m-auto p-5">

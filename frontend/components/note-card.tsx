@@ -11,10 +11,10 @@ import NoteLoading from "./note-loading"
 export default function NoteCard({ noteId }: { noteId: string }) {
   const initialState: NoteCardState = { success: false }
   const getNoteById = unlockNote.bind(null, noteId)
-  const [cardState, getNoteAction] = useActionState<NoteCardState, FormData>(
-    getNoteById,
-    initialState
-  )
+  const [cardState, getNoteAction, isPending] = useActionState<
+    NoteCardState,
+    FormData
+  >(getNoteById, initialState)
   return (
     <div className="flex h-full w-full items-center justify-center">
       <Card>
@@ -29,7 +29,11 @@ export default function NoteCard({ noteId }: { noteId: string }) {
               <Note note={cardState.data!.note} noteId={noteId} />
             </Suspense>
           ) : (
-            <UnlockNoteForm state={cardState} action={getNoteAction} />
+            <UnlockNoteForm
+              state={cardState}
+              action={getNoteAction}
+              pending={isPending}
+            />
           )}
         </CardContent>
       </Card>

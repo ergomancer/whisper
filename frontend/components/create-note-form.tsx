@@ -5,9 +5,11 @@ import { Textarea } from "./ui/textarea"
 export default function CreateNoteForm({
   state,
   action,
+  pending,
 }: {
   state: CreateNoteCardState
   action: (payload: FormData) => void
+  pending: boolean
 }) {
   return (
     <form
@@ -37,7 +39,7 @@ export default function CreateNoteForm({
             )
           })}
       </div>
-      <Button type="submit" className="place-self-end">
+      <Button type="submit" disabled={pending} className="place-self-end">
         Create
       </Button>
     </form>

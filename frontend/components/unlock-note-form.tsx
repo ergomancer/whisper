@@ -5,9 +5,11 @@ import { NoteCardState } from "@/lib/types"
 export default function UnlockNoteForm({
   state,
   action,
+  pending,
 }: {
   state: NoteCardState
   action: (payload: FormData) => void
+  pending: boolean
 }) {
   return (
     <form
@@ -35,7 +37,7 @@ export default function UnlockNoteForm({
             </p>
           ))}
       </div>
-      <Button type="submit" className="place-self-end">
+      <Button type="submit" className="place-self-end" disabled={pending}>
         Unlock
       </Button>
     </form>
