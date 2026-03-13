@@ -1,5 +1,7 @@
 import { summarize } from "@/lib/data"
 import Summary from "@/components/summary"
+import { Suspense } from "react"
+import SummaryLoading from "@/components/summary-loading"
 
 export default async function Page({
   params,
@@ -8,5 +10,9 @@ export default async function Page({
 }) {
   const { noteId } = await params
   const { summary } = await summarize(noteId)
-  return <Summary summary={summary} />
+  return (
+    <Suspense fallback={<SummaryLoading />}>
+      <Summary summary={summary} />
+    </Suspense>
+  )
 }

@@ -1,11 +1,12 @@
 "use client"
 
-import { useActionState } from "react"
+import { Suspense, useActionState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 import { NoteCardState } from "../lib/types"
 import { unlockNote } from "@/lib/actions"
 import UnlockNoteForm from "./unlock-note-form"
 import Note from "./note"
+import NoteLoading from "./note-loading"
 
 export default function NoteCard({ noteId }: { noteId: string }) {
   const initialState: NoteCardState = { success: false }
@@ -24,7 +25,9 @@ export default function NoteCard({ noteId }: { noteId: string }) {
         </CardHeader>
         <CardContent>
           {cardState.success ? (
-            <Note note={cardState.data!.note} noteId={noteId} />
+            <Suspense fallback={<NoteLoading />}>
+              <Note note={cardState.data!.note} noteId={noteId} />
+            </Suspense>
           ) : (
             <UnlockNoteForm state={cardState} action={getNoteAction} />
           )}
