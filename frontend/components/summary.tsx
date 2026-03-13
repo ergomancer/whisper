@@ -5,8 +5,10 @@ import {
   CardContent,
   CardDescription,
 } from "./ui/card"
+import { summarize } from "@/lib/data"
 
-export default function Summary({ summary }: { summary: string }) {
+export default async function Summary({ noteId }: { noteId: string }) {
+  const { summary } = await summarize(noteId)
   return (
     <div className="flex h-full w-full items-center justify-center">
       <Card>

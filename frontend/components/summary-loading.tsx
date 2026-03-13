@@ -12,7 +12,7 @@ export default function SummaryLoading() {
     <div className="flex h-full w-full items-center justify-center">
       <Card>
         <CardHeader className="mb-5">
-          <CardTitle className="text-2xl">Summary</CardTitle>
+          <CardTitle className="text-2xl">Generating Summary...</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
