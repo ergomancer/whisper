@@ -2,6 +2,15 @@
 
 A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and powered by Gemini.
 
+## Usage
+
+- Create a note.
+- Share the generated link and password to the recipient.
+- They open the link.
+- They enter the password to unlock the note.
+- They read the note.
+- They can summarize the note (Powered by AI).
+
 ## Setup Instructions
 
 1. Clone this [repository](https://github.com/ergomancer/whisper)
