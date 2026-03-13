@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useActionState } from "react"
+import { useActionState } from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card"
 import { NoteCardState } from "../lib/types"
 import { unlockNote } from "@/lib/actions"
@@ -25,9 +25,11 @@ export default function NoteCard({ noteId }: { noteId: string }) {
         </CardHeader>
         <CardContent>
           {cardState.success ? (
-            <Suspense fallback={<NoteLoading />}>
+            isPending ? (
+              <NoteLoading />
+            ) : (
               <Note note={cardState.data!.note} noteId={noteId} />
-            </Suspense>
+            )
           ) : (
             <UnlockNoteForm
               state={cardState}

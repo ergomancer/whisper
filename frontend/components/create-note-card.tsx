@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Suspense, useActionState } from "react"
+import { useActionState } from "react"
 import CreateNoteForm from "@/components/create-note-form"
 import { createNote } from "@/lib/actions"
 import NoteData from "./note-data"
@@ -39,9 +39,13 @@ export default function CreateNoteCard() {
         <div className="m-auto p-5">
           <CardDescription>
             {cardState.success ? (
-              <Suspense fallback={<NoteDataLoading />}>
+              isPending ? (
+                <NoteDataLoading />
+              ) : isPending ? (
+                <NoteDataLoading />
+              ) : (
                 <NoteData createdNote={cardState.data!} />
-              </Suspense>
+              )
             ) : (
               <ol className="flex flex-col gap-5 text-lg text-red-500">
                 <li key="1">Create a note</li>
