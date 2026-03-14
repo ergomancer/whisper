@@ -1,6 +1,8 @@
 # Whisper
 
-A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and powered by Gemini.
+A secret note sharing app.
+
+![Demo gif](./docs/whisper-demo.gif)
 
 ## Usage
 
@@ -10,6 +12,80 @@ A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and 
 - They enter the password to unlock the note.
 - They read the note.
 - They can summarize the note (Powered by AI).
+
+## Architecture
+
+Whisper is implemented as a small full-stack application with a clear separation between the frontend and backend services.
+
+### Frontend
+
+Deployed on **Vercel**
+
+- **Next.js (App Router)** - Used along with modern **React** hooks like `useActionState`.
+- **shadcn/ui**
+- **Tailwind CSS**
+- **Zod**
+
+### Backend
+
+Deployed on **Render**
+
+- **Express.js with TypeScript**
+- **Prisma ORM**
+- **Zod**
+
+### Database
+
+Deployed on **Neon**
+
+- **PostgreSQL** via **Prisma ORM**
+
+### AI Integration
+
+- **Google Gemini API**
+
+### Background Jobs
+
+A scheduled **Vercel** cron job hits an API endpoint and cleans up expired notes from the database periodically.
+
+## API Overview
+
+The API accepts and returns `json` where applicable.
+
+### Create Note
+
+**POST** `/notes`
+Creates a new note.
+
+> accepts `{note: string, expiry?: ISO format}`
+>
+> returns `{noteId: string, password: string}`
+
+### Unlock Note
+
+**POST** `/notes/:noteId`
+Verifies password and returns the note content.
+
+> accepts `{password: string}`
+>
+> returns `{note: string}`
+
+### Generate Summary
+
+**POST** `/notes/:noteId/summarize`
+Generates an AI summary of the unlocked note using the Gemini API.
+
+> accepts `{note: string}`
+>
+> return `{summary: string}`
+
+## Repository structure
+
+> ```
+> /frontend -> Next.js Application
+> /backend  -> Express API server
+> /docs     -> Documentation assets
+> ```
 
 ## Setup Instructions
 
@@ -30,9 +106,9 @@ A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and 
       4. `GEMINI_API_KEY` - your gemini api key
       5. `CRON_SECRET` - secret to authorize cron jobs - removal of expired entries
    2. in `/frontend`
-      1. `BACKEND_URL` - url for the backend where this is deployed (for local it will be `"https://localhost:<PORT>"` : replace `<PORT>` with the value of the `PORT` in `.env` in `/frontend`)
+      1. `BACKEND_URL` - url for the backend where this is deployed (for local it will be `"https://localhost:<PORT>"` : replace `<PORT>` with the value of the `PORT` in `.env` in `/backend`)
       2. `NEXT_PUBLIC_FRONTEND_URL` - url for the frontend. Same as `APP_URL` in `.env` in `/frontend`
-      3. `CRON_SECRET` - secret to authorize cron jobs - removal of expired entries
+      3. `CRON_SECRET` - secret to authorize cron jobs - removal of expired entries - same as `CRON_SECRET` in the `.env` in `/backtend`
 
 6. Run prisma migrate and generate prisma client
 
@@ -55,9 +131,22 @@ A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and 
 
 8. Visit the frontend on any browser
 
+## Security Considerations
+
+This project is a simplified implementation for learning and demonstration purposes, therefore certain production system standards are neglected:
+
+- Encrypt note and maybe even passwords before storing them in the database
+- Implement rate limiting to prevent password brute force attempts, protect against DDos and secure the API in general.
+- Add request validation and stricter API access control [Here only the cron job <-> cleanup API is secured via a secret].
+
 ## Potential Future Improvements
 
-- Notes with lifespan
-- Summary storage and retrieval
+- Support note self-destruct after first read
+- Add end-to-end encryption for note content
 - Reply feature
-  - AI generated reply
+- Summary storage and retrieval
+  - Saves time
+  - Saves cost
+  - Saves planet
+- Add unit and integration tests
+- Improve UI/UX
