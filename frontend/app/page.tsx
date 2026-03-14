@@ -18,7 +18,7 @@ export default function Page() {
 
   return (
     <div className="mt-5 mb-5 flex flex-col-reverse items-center justify-center lg:flex-row">
-      <div className="w-[80%] flex-[0.7] p-5 lg:border-r">
+      <div className="w-[90vw] flex-[0.7] p-5 lg:border-r">
         {isPending ? (
           <LoadingSkeleton message="Creating your note..." />
         ) : formState.success ? (

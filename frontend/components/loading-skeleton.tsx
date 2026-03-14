@@ -12,7 +12,7 @@ export default function LoadingSkeleton(
         </CardHeader>
       )}
       <CardContent>
-        <Skeleton className="h-50 w-[80%]" />
+        <Skeleton className="h-50 w-[90%]" />
       </CardContent>
     </Card>
   )

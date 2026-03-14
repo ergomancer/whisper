@@ -18,7 +18,7 @@ export default function CreateNoteForm({
         id="note"
         name="note"
         placeholder="Write your note within 500 characters"
-        className="h-100 w-[80%]"
+        className="h-100 w-[90%] place-self-center"
         aria-describedby="note-error"
       />
       <div

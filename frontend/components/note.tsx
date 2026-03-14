@@ -14,8 +14,8 @@ export default function Note({ note }: { note: string }) {
     initialState
   )
   return (
-    <div className="w-[80vw]">
-      <p className="text-md min-h-50 w-[80%]">{note}</p>
+    <div className="content">
+      <p className="text-md mb-5">{note}</p>
       {!isPending ? (
         !summaryState.summary ? (
           <form action={summarizeAction}>
