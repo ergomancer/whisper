@@ -7,7 +7,6 @@ import type {
 } from "./types"
 import { SchemaNoteCreate, SchemaPassword } from "./schema"
 import { ExtendedError } from "./errors"
-import { z } from "zod"
 
 export async function createNote(
   prevState: CreateNoteActionState,
@@ -16,12 +15,11 @@ export async function createNote(
   const returnValue: CreateNoteActionState = { success: false }
   const validatedFields = SchemaNoteCreate.safeParse({
     note: formData.get("note"),
+    expiry: formData.get("expiry"),
   })
 
   if (!validatedFields.success) {
-    returnValue.errors = {
-      note: z.treeifyError(validatedFields.error).properties?.note?.errors!,
-    }
+    Object.assign(returnValue, validatedFields.error.flatten())
     return returnValue
   }
 
@@ -57,10 +55,7 @@ export async function unlockNote(
   })
 
   if (!validatedFields.success) {
-    returnValue.errors = {
-      password: z.treeifyError(validatedFields.error).properties?.password
-        ?.errors!,
-    }
+    Object.assign(returnValue, validatedFields.error.flatten())
     return returnValue
   }
 

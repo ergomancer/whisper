@@ -8,7 +8,8 @@ generator client {
 }
 
 model Note {
-  noteId   String @id @default(uuid())
+  noteId   String    @id @default(uuid())
   note     String
-  password String @default(uuid())
+  password String    @default(uuid())
+  expiry   DateTime?
 }

@@ -22,3 +22,14 @@ export async function getNote(noteId: string) {
   if (note) return note;
   else throw NotFound;
 }
+
+//query to delete expired
+export async function deleteExpired() {
+  await prisma.note.deleteMany({
+    where: {
+      expiry: {
+        lt: new Date(),
+      },
+    },
+  });
+}

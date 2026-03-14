@@ -1,9 +1,9 @@
 export type ActionState = {
   success: boolean
 }
-export type CreateNoteError = { note: string[] }
+export type CreateNoteError = { note?: string[]; expiry?: string[] }
 
-export type UnlockNoteError = { password: string[] }
+export type UnlockNoteError = { password?: string[] }
 
 export type CreatedNoteData = {
   noteId: string
@@ -19,11 +19,13 @@ export type Summary = {
 }
 
 export type CreateNoteActionState = ActionState & {
-  errors?: CreateNoteError
+  fieldErrors?: CreateNoteError
+  formErrors?: string[]
   data?: CreatedNoteData
 }
 
 export type UnlockNoteActionState = ActionState & {
   data?: Note
-  errors?: UnlockNoteError
+  fieldErrors?: UnlockNoteError
+  formErrors?: string[]
 }

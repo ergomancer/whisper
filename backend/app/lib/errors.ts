@@ -20,6 +20,7 @@ export const NotFound = new ExtendedError(
   "The requested note does not exist!",
 );
 
+// Invalid data doesn't have a hard coded message to make room for error message returned from validation
 export function InvalidData(message: string) {
   return new ExtendedError(400, "InvalidData", message);
 }

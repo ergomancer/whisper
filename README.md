@@ -28,9 +28,12 @@ A secret note sharing app. Built using Next.js, Express, Prisma, PostgreSQL and 
       2. `APP_URL` - base URL for the frontend where this app is to be deployed (for local it will be `"http://localhost:3000"`)
       3. `DATABASE_URL` - url for `DB: whisper`
       4. `GEMINI_API_KEY` - your gemini api key
+      5. `CRON_SECRET` - secret to authorize cron jobs - removal of expired entries
    2. in `/frontend`
       1. `BACKEND_URL` - url for the backend where this is deployed (for local it will be `"https://localhost:<PORT>"` : replace `<PORT>` with the value of the `PORT` in `.env` in `/frontend`)
       2. `NEXT_PUBLIC_FRONTEND_URL` - url for the frontend. Same as `APP_URL` in `.env` in `/frontend`
+      3. `CRON_SECRET` - secret to authorize cron jobs - removal of expired entries
+
 6. Run prisma migrate and generate prisma client
 
    ```bash
