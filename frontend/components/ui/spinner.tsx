@@ -6,7 +6,7 @@ function Spinner({
   className,
   ...props
 }: Omit<React.ComponentProps<"svg">, "strokeWidth"> & {
-  strokeWidth: number | undefined
+  strokeWidth?: number | undefined
 }) {
   return (
     <HugeiconsIcon
