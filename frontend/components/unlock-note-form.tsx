@@ -12,7 +12,7 @@ export default function UnlockNoteForm({
     <form
       action={unlockNoteAction}
       className="flex flex-col gap-5 space-y-3"
-      aria-describedby="password-error"
+      aria-describedby="form-error"
     >
       <Input
         type="password"
@@ -27,8 +27,8 @@ export default function UnlockNoteForm({
         aria-atomic="true"
         className="place-self-end"
       >
-        {formState.errors &&
-          formState.errors.password!.map((err: string) => (
+        {formState.fieldErrors?.password &&
+          formState.fieldErrors.password!.map((err: string) => (
             <p className="mt-2 text-sm text-red-500" key={err}>
               {err}
             </p>
