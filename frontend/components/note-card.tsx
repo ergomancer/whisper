@@ -19,7 +19,9 @@ export default function NoteCard({ noteId }: { noteId: string }) {
   )
   const [formState, unlockNoteAction, isPending] = formManager
   return isPending ? (
-    <LoadingSkeleton message="Unlocking your note..." />
+    <div className="w-screen">
+      <LoadingSkeleton message="Unlocking your note..." />
+    </div>
   ) : (
     <Card>
       <CardHeader className="mb-5">

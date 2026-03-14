@@ -5,7 +5,7 @@
     "frontend",
     "backend"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A secret text messaging app.",
   "repository": {
     "type": "git",
